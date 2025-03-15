@@ -1,0 +1,25 @@
+{
+  "name": "quickcard",
+  "version": "1.0.0",
+  "description": "Hackathon program rest api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjeev200009/ReactNative-Hackathon-QuickCard-App.git"
+  },
+  "author": "Sanjeev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sanjeev200009/ReactNative-Hackathon-QuickCard-App/issues"
+  },
+  "homepage": "https://github.com/sanjeev200009/ReactNative-Hackathon-QuickCard-App#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1"
+  }
+}
