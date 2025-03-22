@@ -7,7 +7,7 @@ import HomeProductsScreen from "@/components/ui/screen/home/HomeProductsScreen";
 import {Ionicons} from "@expo/vector-icons";
 import {COLORS} from "@/constants/CollorPallet";
 import {Image, Text, TouchableOpacity} from "react-native";
-const logo = require('../../../assets/images/logo/logo.png')
+const logo = require('../../../assets/images/logo/logo.png');
 
 
 const Tab = createBottomTabNavigator();
@@ -42,6 +42,7 @@ export default function HomeBottomTabNavigation({navigation}:any){
                             headerTitle :'',
                             headerRight:()=> (
                               <TouchableOpacity
+                                  onPress={()=>navigation.navigate('Login')}
                               style={{
                                   marginRight:10,
                                   width:120,

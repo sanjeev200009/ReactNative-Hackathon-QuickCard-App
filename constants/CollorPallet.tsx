@@ -6,8 +6,9 @@ export const COLORS = {
     slateGray: '#708090',  // Slate gray
     charcoal: '#36454F', // Charcoal
     orange: '#d35400',
-    primaryColr:'#18C0C1',
-    white:'#FFFFFF'
+    primary:'#18C0C1',
+    white:'#FFFFFF',
+    blue:'#3498db'
 
 }as const;
 
