@@ -9,10 +9,13 @@ import ProfileScreen from "@/components/ui/screen/other/ProfileScreen";
 import SettingsScreen from "@/components/ui/screen/other/SettingsScreen";
 import VoucherScreen from "@/components/ui/screen/other/VoucherScreen";
 import LoginScreen from "@/components/ui/screen/Security/LoginScreen";
-import RegisterScreen from "@/components/ui/screen/Security/RegisterScreen";
-import VerifyEmailScreen from "@/components/ui/screen/Security/VerifyEmailScreen";
-import forgotPasswordScreen from "@/components/ui/screen/Security/ForgotPasswordScreen";
+import SignupScreen from "@/components/ui/screen/Security/SignupScreen";
+import SignupVerifyEmailScreen from "@/components/ui/screen/Security/SignupVerifyEmailScreen";
+import forgotPasswordScreen from "@/components/ui/screen/Security/ChangePasswordScreen";
 import MyOrderTopTabNavigator from "@/app/navigation/tab-navigation/MyOrderTopTabNavigator";
+import ResetPasswordVerifyEmailScreen from "@/components/ui/screen/Security/ResetPasswordVerifyEmailScreen";
+import ResetPasswordScreen from "@/components/ui/screen/Security/ResetPasswordScreen";
+
 const Stack = createStackNavigator();
 export default function StackNavigator(){
     return(
@@ -59,16 +62,23 @@ export default function StackNavigator(){
 
             <Stack.Screen name={'Register'}
                           options={{title:'Register your Account Here'}}
-                          component={RegisterScreen}/>
+                          component={SignupScreen}/>
 
             <Stack.Screen name={'verifyEmailforResitration'}
                           options={{title:'Verify Your Email here'}}
-                          component={VerifyEmailScreen}/>
+                          component={SignupVerifyEmailScreen}/>
 
-            <Stack.Screen name={'ForgotPasswordScreen'}
+            <Stack.Screen name={'ChangePasswordScreen'}
                           options={{title:'Change Password'}}
                           component={forgotPasswordScreen}/>
 
+            <Stack.Screen name={'ResetPasswordVerifyEmail'}
+                          options={{title:'Verify Email'}}
+                          component={ResetPasswordVerifyEmailScreen}/>
+
+            <Stack.Screen name={'ResetPassword'}
+                           options={{title:'Reset Password'}}
+                           component={ResetPasswordScreen}/>
 
 
 

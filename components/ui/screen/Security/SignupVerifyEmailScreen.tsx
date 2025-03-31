@@ -4,8 +4,8 @@ import {Icon, TextInput} from "react-native-paper";
 import {useState} from "react";
 const logo = require('../../../../assets/images/logo/logo.png');
 
-export default function ForgotPasswordScreen({navigation}:any){
-    const  [email , SetEmail] = useState('');
+export default function SignupVerifyEmailScreen({navigation}:any){
+    const  [otp , SetOtp] = useState('');
 
     return(
         <ScrollView style={styles.container}>
@@ -17,18 +17,34 @@ export default function ForgotPasswordScreen({navigation}:any){
                     <Text style={styles.VerificationLabel}>
                         Verify your email
                     </Text>
+
                 <TextInput
-                    label="Root Email"
+                    label="Enter OTP"
                     mode={"outlined"}
-                    value={email}
-                    onChangeText={text => SetEmail(text)}
+                    value={otp}
+                    keyboardType={'decimal-pad'}
+                    onChangeText={text => SetOtp(text)}
                  />
                 </View>
 
+                <TouchableOpacity
+                    onPress={()=>navigation.navigate('Register')}
+                    style={styles.ForgotPasswordButton} >
+                    <Text style={styles.ForgotPasswordText}>Change Email</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={()=>{}}
+                    style={styles.ForgotPasswordButton} >
+                    <Text style={styles.ForgotPasswordText}>(30) Resend Email</Text>
+                </TouchableOpacity>
 
-                <TouchableOpacity style={styles.LoginButton}>
+                <TouchableOpacity
+                    onPress={()=>navigation.navigate('Process')}
+                    style={styles.LoginButton}>
                     <Text style={styles.LoginText}>Verify</Text>
                 </TouchableOpacity>
+
+
 
             </View>
         </ScrollView>
@@ -48,6 +64,13 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center'
 
+    },
+    ForgotPasswordText:{
+        color:COLORS.blue,
+        textDecorationLine:'underline'
+    },
+    ForgotPasswordButton:{
+        alignItems:'flex-end'
     },
 
     LoginText:{

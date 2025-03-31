@@ -1,40 +1,20 @@
-import {View, Text, StyleSheet, Alert, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Image, TouchableOpacity} from 'react-native';
 import {COLORS} from "@/constants/CollorPallet";
 import {Icon, TextInput} from "react-native-paper";
 import {useState} from "react";
-import {tls} from "node-forge";
-
 const logo = require('../../../../assets/images/logo/logo.png');
 
-export default function RegisterScreen({navigation}:any){
+export default function ResetPasswordScreen({navigation}:any){
     const  [email , SetEmail] = useState('');
-    const  [username, setUsername] = useState('');
     const  [password , SetPassword] = useState('');
     const [PasswordDisplayState, setPasswordDisplayState] = useState(true);
-
-   const  handleResiter = () => {
-       if(!email.trim() || !username.trim() || !password.trim()){
-           Alert.alert("Validation Error, All fields are required!")
-           return;
-       }
-       navigation.navigate('verifyEmailforResitration');
-   }
-
-
+    const  [ConfirmPassword , SetConfirmPassword ] = useState('');
     return(
         <ScrollView style={styles.container}>
            <View style={styles.logoWrapper}>
               <Image source={logo} style={styles.logo} resizeMode={'contain'}  />
            </View>
             <View style={styles.inputOuter}>
-                <View style={styles.formGroup}>
-                <TextInput
-                    label="Root Email"
-                    mode={"outlined"}
-                    value={email}
-                    onChangeText={text => SetEmail(text)}
-                 />
-                </View>
                 <View style={styles.formGroup}>
                     <TextInput
                         label="Enter Password"
@@ -50,40 +30,30 @@ export default function RegisterScreen({navigation}:any){
                             />
                         }
                     />
+
                 </View>
                 <View style={styles.formGroup}>
                     <TextInput
-                        label="User Name"
+                        label="Confirm Password"
                         mode={"outlined"}
-                        value={username}
-                        onChangeText={text => setUsername(text)}
+                        secureTextEntry={PasswordDisplayState}
+                        value={password}
+                        onChangeText={text => SetConfirmPassword(text)}
+                        right={
+                            <TextInput.Icon
+                                onPress={() => setPasswordDisplayState(!PasswordDisplayState)}
+                                size={20}
+                                icon={PasswordDisplayState ? 'eye-off' : 'eye'}
+                            />
+                        }
                     />
+
                 </View>
 
-                <TouchableOpacity style={styles.LoginButton} onPress={handleResiter}>
-                    <Text style={styles.LoginText}>Register</Text>
+                <TouchableOpacity style={styles.LoginButton} onPress={()=>navigation.navigate('Login')}>
+                    <Text style={styles.LoginText}>Reset Password</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.SeparateText}>Or</Text>
-
-                <View style={styles.SocialLoginWrapper}>
-                    <TouchableOpacity style={styles.iconOuter}>
-                        <Icon size={25} source={'google'} color={COLORS.orange}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconOuter}>
-                        <Icon size={25} source={'facebook'} color={COLORS.orange}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconOuter}>
-                        <Icon size={25} source={'twitter'} color={COLORS.orange}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconOuter}>
-                        <Icon size={25} source={'github'} color={COLORS.orange}/>
-                    </TouchableOpacity>
-                </View>
-
-                <TouchableOpacity style={[styles.LoginButton, { backgroundColor: COLORS.primary }]} onPress={()=>navigation.navigate('Login')}>
-                    <Text style={styles.LoginText}>Already have an Account</Text>
-                </TouchableOpacity>
 
 
             </View>
@@ -120,6 +90,13 @@ const styles = StyleSheet.create({
         height:50,
         alignItems:'center',
         justifyContent:'center'
+    },
+    ForgotPasswordText:{
+        color:COLORS.blue,
+        textDecorationLine:'underline'
+    },
+    ForgotPasswordButton:{
+        alignItems:'flex-end'
     },
     formGroup:{
      marginBottom:10,

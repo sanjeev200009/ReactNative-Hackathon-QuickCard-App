@@ -1,13 +1,26 @@
-import {View, Text, StyleSheet, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Alert, ScrollView, Image, TouchableOpacity} from 'react-native';
 import {COLORS} from "@/constants/CollorPallet";
 import {Icon, TextInput} from "react-native-paper";
 import {useState} from "react";
+import {tls} from "node-forge";
+
 const logo = require('../../../../assets/images/logo/logo.png');
 
-export default function LoginScreen({navigation}:any){
+export default function SignupScreen({navigation}:any){
     const  [email , SetEmail] = useState('');
+    const  [username, setUsername] = useState('');
     const  [password , SetPassword] = useState('');
     const [PasswordDisplayState, setPasswordDisplayState] = useState(true);
+
+   const  handleResiter = () => {
+       if(!email.trim() || !username.trim() || !password.trim()){
+           Alert.alert("Validation Error, All fields are required!")
+           return;
+       }
+       navigation.navigate('verifyEmailforResitration');
+   }
+
+
     return(
         <ScrollView style={styles.container}>
            <View style={styles.logoWrapper}>
@@ -37,36 +50,25 @@ export default function LoginScreen({navigation}:any){
                             />
                         }
                     />
-
+                </View>
+                <View style={styles.formGroup}>
+                    <TextInput
+                        label="User Name"
+                        mode={"outlined"}
+                        value={username}
+                        onChangeText={text => setUsername(text)}
+                    />
                 </View>
 
-                <TouchableOpacity style={styles.ForgotPasswordButton}  onPress={()=>navigation.navigate('ChangePasswordScreen')}>
-                    <Text style={styles.ForgotPasswordText}>Forgot Password?</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.LoginButton}>
-                    <Text style={styles.LoginText}>Login</Text>
+                <TouchableOpacity style={styles.LoginButton} onPress={handleResiter}>
+                    <Text style={styles.LoginText}>Register</Text>
                 </TouchableOpacity>
 
                 <Text style={styles.SeparateText}>Or</Text>
 
-                <View style={styles.SocialLoginWrapper}>
-                    <TouchableOpacity style={styles.iconOuter}>
-                        <Icon size={25} source={'google'} color={COLORS.orange}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconOuter}>
-                        <Icon size={25} source={'facebook'} color={COLORS.orange}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconOuter}>
-                        <Icon size={25} source={'twitter'} color={COLORS.orange}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconOuter}>
-                        <Icon size={25} source={'github'} color={COLORS.orange}/>
-                    </TouchableOpacity>
-                </View>
 
-                <TouchableOpacity style={[styles.LoginButton, { backgroundColor: COLORS.primary }]}   onPress={()=>navigation.navigate('Register')}>
-                    <Text style={styles.LoginText}>Register With Email</Text>
+                <TouchableOpacity style={[styles.LoginButton, { backgroundColor: COLORS.primary }]} onPress={()=>navigation.navigate('Login')}>
+                    <Text style={styles.LoginText}>Already have an Account</Text>
                 </TouchableOpacity>
 
 
@@ -104,13 +106,6 @@ const styles = StyleSheet.create({
         height:50,
         alignItems:'center',
         justifyContent:'center'
-    },
-    ForgotPasswordText:{
-        color:COLORS.blue,
-        textDecorationLine:'underline'
-    },
-    ForgotPasswordButton:{
-        alignItems:'flex-end'
     },
     formGroup:{
      marginBottom:10,
