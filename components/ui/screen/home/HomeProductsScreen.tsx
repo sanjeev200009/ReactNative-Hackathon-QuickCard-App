@@ -5,7 +5,7 @@ import DisplayTypeWidget from "@/components/ui/screen/share/DisplayTypeWidget";
 import ProductGridViewWidget from "@/components/ui/screen/home/Widget/ProductGridViewWidget";
 import {COLORS} from "@/constants/CollorPallet";
 import ProductListViewWidget from "@/components/ui/screen/home/Widget/ProductListViewWidget";
-export default function HomeProductsScreen(){
+export default function HomeProductsScreen({navigation}:any){
     const [searchQuery,setSearchQuery] = useState('');
     const [IsGridEnabled,setIsGridEnabled] = useState(false);
     const manageGridView=({state}:any)=>{
@@ -24,20 +24,18 @@ export default function HomeProductsScreen(){
             {IsGridEnabled?(
                 <ScrollView
                     showsVerticalScrollIndicator={false}>
-                    <ProductGridViewWidget/>
-                    <ProductGridViewWidget/>
-                    <ProductGridViewWidget/>
-                    <ProductGridViewWidget/>
-                    <ProductGridViewWidget/>
+                    <ProductGridViewWidget navigation={navigation}/>
+                    <ProductGridViewWidget navigation={navigation}/>
+                    <ProductGridViewWidget navigation={navigation}/>
+                    <ProductGridViewWidget navigation={navigation}/>
                 </ScrollView>
             ):(
                 <ScrollView
                     showsVerticalScrollIndicator={false}>
-                    <ProductListViewWidget/>
-                    <ProductListViewWidget/>
-                    <ProductListViewWidget/>
-                    <ProductListViewWidget/>
-                    <ProductListViewWidget/>
+                    <ProductListViewWidget navigation={navigation}/>
+                    <ProductListViewWidget navigation={navigation}/>
+                    <ProductListViewWidget navigation={navigation}/>
+                    <ProductListViewWidget navigation={navigation}/>
                 </ScrollView>
             )}
         </View>

@@ -1,12 +1,18 @@
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {COLORS} from "@/constants/CollorPallet";
 import {Icon} from "react-native-paper";
+import {useState} from "react";
 
-export default function ProductListViewWidget({navigation}:any) {
+export default function CartListViewWidget() {
+    const  [Qty, setQty] = useState(0);
+    const  changeQty = (value:number) =>{
+        if(value < 0){
+            return;
+        }
+        setQty(value)
+    }
     return (
-        <TouchableOpacity
-            onPress={()=>navigation.navigate('ProductDetails')}
-            style={styles.container}>
+        <TouchableOpacity style={styles.container}>
             <View style={styles.imageView}>
                 <TouchableOpacity style={styles.bookmarkButton}>
                     <Icon size={20} source={'heart-outline'} color={COLORS.white}/>
@@ -18,12 +24,36 @@ export default function ProductListViewWidget({navigation}:any) {
             <View style={{flex:1, padding:5}}>
                 <Text style={styles.name}>Product Photos, Download The...</Text>
                 <Text style={styles.price}>LKR 150,000</Text>
-                <Text style={styles.qty}>QTY : 15</Text>
+                <View style={styles.buttonBar}>
+                    <TouchableOpacity  onPress={()=>changeQty(Qty-1)}  style={styles.button}>
+                        <Icon size={20} source={'minus'} color={COLORS.blue}/>
+                    </TouchableOpacity>
+                    <Text style={{fontWeight:'bold',marginLeft:10,marginRight:10}}>{Qty}</Text>
+                    <TouchableOpacity onPress={()=>changeQty(1+Qty) } style={styles.button}>
+                        <Icon size={20} source={'plus'} color={COLORS.blue}/>
+                    </TouchableOpacity>
+
+                </View>
             </View>
         </TouchableOpacity>
     )
 }
 const styles = StyleSheet.create({
+    buttonBar:{
+        marginTop:20,
+        flexDirection:'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    button:{
+        width:35,
+        height:35,
+        borderRadius:50,
+        borderWidth:1,
+        justifyContent:'center',
+        alignItems:'center',
+        borderColor:COLORS.blue
+    },
     bookmarkButton: {
         width: 40,
         height: 40,

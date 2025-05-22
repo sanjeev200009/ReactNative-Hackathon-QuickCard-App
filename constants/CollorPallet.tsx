@@ -8,7 +8,8 @@ export const COLORS = {
     orange: '#d35400',
     primary:'#18C0C1',
     white:'#FFFFFF',
-    blue:'#3498db'
+    blue:'#3498db',
+    black:'#000000'
 
 }as const;
 
