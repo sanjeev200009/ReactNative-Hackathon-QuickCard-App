@@ -25,7 +25,7 @@ const VoucherDetailsRoute = require('./route/VoucherDetailsRoute');
 const  app = express();
 app.use(bodyParser.json())
 
-mongoose.connect('mongodb://127.0.0.1:28000/quick_cart_db').then(()=>{
+mongoose.connect('mongodb://127.0.0.1:27017/quick_cart_db').then(()=>{
     console.log('Database connected successfully')
 }).catch((e)=> {
     console.log(e);
@@ -42,7 +42,7 @@ app.use('/api/v1/bookmarks',ProductRoute);
 app.use('/api/v1/bookmarks',RefundRoute);
 app.use('/api/v1/bookmarks',ReturnRoute);
 app.use('/api/v1/bookmarks',ReviewRoute);
-app.use('/api/v1/bookmarks',RoleRoute);
+app.use('/api/v1/roles',RoleRoute);
 app.use('/api/v1/bookmarks',UserRoute);
 app.use('/api/v1/bookmarks',VoucherRoute);
 app.use('/api/v1/bookmarks',VoucherDetailsRoute);

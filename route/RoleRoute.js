@@ -3,6 +3,7 @@ const router = express.Router();
 const RoleController = require('../controller/RoleController');
 
 
-//Code here
+router.post('/create-role', RoleController.createRole)
+
 
 module.exports=router;
