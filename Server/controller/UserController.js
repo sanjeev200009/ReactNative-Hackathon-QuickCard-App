@@ -10,19 +10,28 @@ const generateOtp = ()=>Math.floor(100000+Math.random()*900000);
 const registerUser = async (req, resp) => {
    try{
        const {username, displayName, password, roles, isActive} = req.body;
-       const existingUser = await User.findOne({username});
+       
+       // Use username as email since frontend sends email as username
+       const email = username;
+       
+       const existingUser = await User.findOne({$or: [{username}, {email}]});
        if (existingUser) {
-           return resp.status(409).json({message: 'username is already exists!'});
+           return resp.status(409).json({message: 'User already exists!'});
        }
-       console.log(username, displayName, password, roles, isActive)
+       console.log('Creating user:', username, displayName, email, roles, isActive)
        const salt =  bcrypt.genSaltSync(10);
        const hashedPassword =  bcrypt.hashSync(password, salt);
 
        const otp = generateOtp();
 
        const newUser = new User({
-           username, displayName, password:hashedPassword,
-           roles, isActive, otp
+           username, 
+           displayName, 
+           email,  // Add email field
+           password: hashedPassword,
+           roles, 
+           isActive, 
+           otp
        });
 
        // TODO: Uncomment when SendGrid account is fixed

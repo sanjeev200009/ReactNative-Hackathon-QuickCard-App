@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const cors = require('cors');
 const PORT = process.env.PORT || 3000;
 
 
@@ -26,6 +27,12 @@ const {connect} = require("mongoose");
 const  app = express();
 app.use(bodyParser.json())
 
+
+app.use(cors(
+    {
+        origin: '*'
+    }
+));
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/quick_card_db').then(()=>{
